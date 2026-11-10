@@ -6,6 +6,44 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>성가대 파트 연습실</title>
 <style>
+  
+/* 전체 페이지 */
+body {
+    background-color: #F4F1E8;
+    color: #34483B;
+}
+
+/* 제목 */
+h1, h2, h3 {
+    color: #34483B;
+}
+
+/* 메뉴 버튼 */
+button {
+    background-color: #DCE8DC;
+    color: #34483B;
+    border: 1px solid #B8CBB9;
+    border-radius: 8px;
+}
+
+/* 마우스를 올렸을 때 */
+button:hover {
+    background-color: #C6D9C8;
+}
+
+/* 선택된 메뉴 */
+button.active,
+button.selected {
+    background-color: #496B50;
+    color: #FFFFFF;
+}
+
+/* 영상 바깥 영역 */
+.video-box {
+    background-color: #EAEDE4;
+    border-radius: 12px;
+}
+
 * { box-sizing: border-box; }
 body {
   margin: 0; padding: 18px 12px 36px;
@@ -78,7 +116,7 @@ button[aria-pressed="true"] { background: #536b57; border-color: #9ac49f; }
   <p class="section-title">연습할 파트를 선택하세요</p>
   <div class="buttons" id="partButtons">
     <button type="button" data-label="합창" data-video="WDo9-MQaFdA" aria-pressed="true">합창</button>
-    <button type="button" data-label="소프라노｜Vocal" data-video="5nVisA0XzUs" aria-pressed="false">소프｜Vocal</button>
+    <button type="button" data-label="소프라노｜Vocal" data-video="5nVisA0XzUs" aria-pressed="false">소프라노｜Vocal</button>
     <button type="button" data-label="알토｜Vocal" data-video="X0dCuh9HJLc" aria-pressed="false">알토｜Vocal</button>
     <button type="button" data-label="테너｜Vocal" data-video="6lKgIc-pcwg" aria-pressed="false">테너｜Vocal</button>
     <button type="button" data-label="베이스｜Vocal" data-video="cOuN-sN6P7Y" aria-pressed="false">베이스｜Vocal</button>
