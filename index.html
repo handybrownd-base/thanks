@@ -29,7 +29,7 @@ main {
 /* 제목 */
 h1 {
     margin: 8px 0 6px;
-    color: #34483B;
+    color: #DDE8D9;
     font-size: clamp(23px, 4vw, 34px);
 }
 
@@ -39,7 +39,7 @@ h2, h3 {
 
 .subtitle {
     margin: 0 0 22px;
-    color: #758675;
+    color: #A9BDAA;
     letter-spacing: 2px;
     font-size: 12px;
 }
@@ -50,12 +50,12 @@ h2, h3 {
     background: #EAEDE4;
     border: 1px solid #D2DCCF;
     border-radius: 18px;
-    box-shadow: 0 5px 18px #34483B15;
+    box-shadow: 0 5px 18px #00000022;
 }
 
 #nowPlaying {
     margin: 0 0 12px;
-    color: #496B50;
+    color: #DDE8D9;
     font-weight: bold;
 }
 
@@ -65,7 +65,7 @@ h2, h3 {
     width: 100%;
     aspect-ratio: 16 / 9;
     min-height: 220px;
-    background: #D8E0D5;
+    background: #26352F;
     border-radius: 12px;
     overflow: hidden;
 }
@@ -81,7 +81,7 @@ h2, h3 {
 /* 파트 선택 안내 */
 .section-title {
     margin: 22px 0 10px;
-    color: #496B50;
+    color: #DDE8D9;
     font-weight: bold;
 }
 
@@ -95,7 +95,7 @@ h2, h3 {
 
 /* 모든 버튼 */
 button, .action {
-    border: 1px solid #B8CBB9;
+    border: 1px solid #718775;
     border-radius: 12px;
     padding: 12px 16px;
     background: #DCE8DC;
@@ -107,13 +107,13 @@ button, .action {
 
 /* 마우스 올렸을 때 */
 button:hover, .action:hover {
-    background: #C6D9C8;
+    background: #66816B;
 }
 
 /* 선택된 파트 */
 button[aria-pressed="true"] {
     background: #496B50;
-    border-color: #496B50;
+    border-color: #DDE8D9;
     color: #FFFFFF;
 }
 
@@ -130,7 +130,7 @@ button[aria-pressed="true"] {
 .notice {
     max-width: 760px;
     margin: 18px auto 0;
-    color: #68786B;
+    color: #B6C7B5;
     font-size: 12px;
     line-height: 1.7;
     text-align: left;
@@ -161,7 +161,7 @@ button[aria-pressed="true"] {
     <p id="nowPlaying">현재 선택: 합창</p>
     <div class="video-box">
       <iframe id="youtubePlayer"
-        src="https://www.youtube.com/embed/WDo9-MQaFdA?playsinline=1&rel=0"
+        src="https://www.youtube.com/embed/WDo9-MQaFdA?playsinline=1&rel=0&loop=1&playlist=WDo9-MQaFdA"
         title="성가대 연습 영상"
         referrerpolicy="strict-origin-when-cross-origin"
         allow="accelerometer; autoplay; encrypted-media; picture-in-picture; web-share"
@@ -172,7 +172,7 @@ button[aria-pressed="true"] {
       <a class="action" id="youtubeLink"
          href="https://www.youtube.com/watch?v=WDo9-MQaFdA"
          target="_blank" rel="noopener noreferrer">유튜브에서 열기 ↗</a>
-      <button type="button" id="loopButton" aria-pressed="false">반복 재생: 꺼짐</button>
+      <button type="button" id="loopButton" aria-pressed="true">반복 재생: 켜짐</button>
     </div>
   </section>
 
@@ -192,7 +192,7 @@ const nowPlaying = document.getElementById("nowPlaying");
 const youtubeLink = document.getElementById("youtubeLink");
 const loopButton = document.getElementById("loopButton");
 
-let loopEnabled = false;
+let loopEnabled = true;
 let currentVideoId = "WDo9-MQaFdA";
 
 function makeEmbedUrl(videoId) {
