@@ -6,86 +6,149 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>성가대 파트 연습실</title>
 <style>
-  
-/* 전체 페이지 */
+/* 전체 기본 설정 */
+* {
+    box-sizing: border-box;
+}
+
 body {
+    margin: 0;
+    padding: 18px 12px 36px;
     background-color: #F4F1E8;
     color: #34483B;
+    font-family: Arial, "Malgun Gothic", sans-serif;
+    text-align: center;
+}
+
+/* 페이지 너비 */
+main {
+    max-width: 980px;
+    margin: 0 auto;
 }
 
 /* 제목 */
-h1, h2, h3 {
+h1 {
+    margin: 8px 0 6px;
+    color: #34483B;
+    font-size: clamp(23px, 4vw, 34px);
+}
+
+h2, h3 {
     color: #34483B;
 }
 
-/* 메뉴 버튼 */
-button {
-    background-color: #DCE8DC;
-    color: #34483B;
+.subtitle {
+    margin: 0 0 22px;
+    color: #758675;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
+/* 음악 플레이어 */
+.player-card {
+    padding: 16px;
+    background: #EAEDE4;
+    border: 1px solid #D2DCCF;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px #34483B15;
+}
+
+#nowPlaying {
+    margin: 0 0 12px;
+    color: #496B50;
+    font-weight: bold;
+}
+
+/* 영상 영역 */
+.video-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 220px;
+    background: #D8E0D5;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.video-box iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* 파트 선택 안내 */
+.section-title {
+    margin: 22px 0 10px;
+    color: #496B50;
+    font-weight: bold;
+}
+
+/* 버튼 영역 */
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 9px;
+}
+
+/* 모든 버튼 */
+button, .action {
     border: 1px solid #B8CBB9;
-    border-radius: 8px;
+    border-radius: 12px;
+    padding: 12px 16px;
+    background: #DCE8DC;
+    color: #34483B;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-/* 마우스를 올렸을 때 */
-button:hover {
-    background-color: #C6D9C8;
+/* 마우스 올렸을 때 */
+button:hover, .action:hover {
+    background: #C6D9C8;
 }
 
-/* 선택된 메뉴 */
-button.active,
-button.selected {
-    background-color: #496B50;
+/* 선택된 파트 */
+button[aria-pressed="true"] {
+    background: #496B50;
+    border-color: #496B50;
     color: #FFFFFF;
 }
 
-/* 영상 바깥 영역 */
-.video-box {
-    background-color: #EAEDE4;
-    border-radius: 12px;
+/* 재생 관련 버튼 */
+.actions {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
 }
 
-* { box-sizing: border-box; }
-body {
-  margin: 0; padding: 18px 12px 36px;
-  background: #101720; color: #f4f1e9;
-  font-family: Arial, "Malgun Gothic", sans-serif;
-  text-align: center;
-}
-main { max-width: 980px; margin: 0 auto; }
-h1 { margin: 8px 0 6px; color: #f0d59c; font-size: clamp(23px, 4vw, 34px); }
-.subtitle { margin: 0 0 22px; color: #aeb8c5; letter-spacing: 2px; font-size: 12px; }
-.player-card {
-  padding: 16px; background: #1a2532;
-  border: 1px solid #394657; border-radius: 18px;
-  box-shadow: 0 12px 32px #0005;
-}
-#nowPlaying { margin: 0 0 12px; color: #f0d59c; font-weight: bold; }
-.video-box {
-  position: relative; width: 100%; aspect-ratio: 16 / 9;
-  min-height: 220px; background: #05080c;
-  border-radius: 12px; overflow: hidden;
-}
-.video-box iframe {
-  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
-}
-.section-title { margin: 22px 0 10px; color: #d9c49b; font-weight: bold; }
-.buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
-button, .action {
-  border: 1px solid #536276; border-radius: 12px;
-  padding: 12px 16px; background: #253344; color: #f4f1e9;
-  font-size: 15px; cursor: pointer; text-decoration: none;
-}
-button:hover, .action:hover { background: #40536a; }
-button[aria-pressed="true"] { background: #536b57; border-color: #9ac49f; }
-.actions { margin-top: 14px; display: flex; justify-content: center; flex-wrap: wrap; gap: 9px; }
+/* 안내문 */
 .notice {
-  max-width: 760px; margin: 18px auto 0; color: #aeb8c5;
-  font-size: 12px; line-height: 1.7; text-align: left;
+    max-width: 760px;
+    margin: 18px auto 0;
+    color: #68786B;
+    font-size: 12px;
+    line-height: 1.7;
+    text-align: left;
 }
+
+/* 모바일 화면 */
 @media (max-width: 560px) {
-  body { padding: 14px 10px 28px; }
-  .player-card { padding: 10px; }
-  button, .action { flex: 1 1 42%; }
+    body {
+        padding: 14px 10px 28px;
+    }
+
+    .player-card {
+        padding: 10px;
+    }
+
+    button, .action {
+        flex: 1 1 42%;
+    }
 }
 </style>
 </head>
