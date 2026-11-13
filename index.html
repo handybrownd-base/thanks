@@ -6,6 +6,39 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>성가대 파트 연습실</title>
 <style>
+
+/* 공통 영상 확대 영역 */
+.video-zoom {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 유튜브 영상 확대 */
+.video-zoom iframe {
+    width: 100%;
+    height: 100%;
+    transform: scale(1.5);
+}
+
+/* 소프라노와 알토: 위쪽 중심 */
+.top-zoom iframe {
+    transform: scale(1.5) translateY(15%);
+}
+
+/* 테너와 베이스: 아래쪽 중심 */
+.bottom-zoom iframe {
+    transform: scale(1.5) translateY(-15%);
+}
+
+/* 스마트폰 화면 */
+@media (max-width: 600px) {
+    .video-zoom {
+        height: 320px;
+    }
+}
+    
 /* 전체 기본 설정 */
 * {
     box-sizing: border-box;
