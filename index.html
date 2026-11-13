@@ -57,7 +57,7 @@ h2, h3 {
 
 #nowPlaying {
     margin: 0 0 12px;
-    color: #C9A227;
+    color: #DDE8D9;
     font-weight: bold;
 }
 
@@ -80,18 +80,7 @@ h2, h3 {
     border: 0;
 }
 
-/* 스마트폰 파트별 확대 위치 */
-@media (max-width: 600px) {
-    .video-box.top-zoom iframe {
-        transform: scale(1.35);
-        transform-origin: center top;
-    }
 
-    .video-box.bottom-zoom iframe {
-        transform: scale(1.35);
-        transform-origin: center bottom;
-    }
-}
 
 /* 파트 선택 안내 */
 .section-title {
@@ -225,26 +214,6 @@ function makeEmbedUrl(videoId) {
   return "https://www.youtube.com/embed/" + encodeURIComponent(videoId) + "?" + params.toString();
 }
 
-function applyPartZoom(label) {
-  // 먼저 기존 확대 설정을 초기화
-  videoBox.classList.remove("top-zoom", "bottom-zoom");
-
-  // 합창 영상은 확대하지 않고 원래 크기 유지
-  if (label.includes("합창")) {
-    return;
-  }
-
-  // 소프라노와 알토는 위쪽 확대
-  if (label.includes("소프라노") || label.includes("알토")) {
-    videoBox.classList.add("top-zoom");
-  }
-
-  // 테너와 베이스는 아래쪽 확대
-  else if (label.includes("테너") || label.includes("베이스")) {
-    videoBox.classList.add("bottom-zoom");
-  }
-}
-
 function playVideo(videoId, label, clickedButton) {
   if (!videoId) {
     alert("아직 이 파트의 영상 주소가 입력되지 않았습니다. HTML의 data-video에 유튜브 영상 ID를 넣어주세요.");
@@ -252,7 +221,6 @@ function playVideo(videoId, label, clickedButton) {
   }
 
   currentVideoId = videoId;
-  applyPartZoom(label);
   player.src = makeEmbedUrl(videoId);
   youtubeLink.href = "https://www.youtube.com/watch?v=" + encodeURIComponent(videoId);
   nowPlaying.textContent = "현재 선택: " + label;
