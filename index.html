@@ -7,37 +7,6 @@
 <title>성가대 파트 연습실</title>
 <style>
 
-/* 공통 영상 확대 영역 */
-.video-zoom {
-    width: 100%;
-    height: 280px;
-    overflow: hidden;
-    position: relative;
-}
-
-/* 유튜브 영상 확대 */
-.video-zoom iframe {
-    width: 100%;
-    height: 100%;
-    transform: scale(1.5);
-}
-
-/* 소프라노와 알토: 위쪽 중심 */
-.top-zoom iframe {
-    transform: scale(1.5) translateY(15%);
-}
-
-/* 테너와 베이스: 아래쪽 중심 */
-.bottom-zoom iframe {
-    transform: scale(1.5) translateY(-15%);
-}
-
-/* 스마트폰 화면 */
-@media (max-width: 600px) {
-    .video-zoom {
-        height: 320px;
-    }
-}
     
 /* 전체 기본 설정 */
 * {
@@ -111,6 +80,19 @@ h2, h3 {
     border: 0;
 }
 
+/* 스마트폰 파트별 확대 위치 */
+@media (max-width: 600px) {
+    .video-box.top-zoom iframe {
+        transform: scale(1.35);
+        transform-origin: center top;
+    }
+
+    .video-box.bottom-zoom iframe {
+        transform: scale(1.35);
+        transform-origin: center bottom;
+    }
+}
+
 /* 파트 선택 안내 */
 .section-title {
     margin: 22px 0 10px;
@@ -143,11 +125,13 @@ button:hover, .action:hover {
     background: #66816B;
 }
 
-/* 선택된 파트 */
-button[aria-pressed="true"] {
-    background: #496B50;
-    border-color: #DDE8D9;
-    color: #FFFFFF;
+/* 선택된 파트: 금색 글씨로 강조 */
+#partButtons button[aria-pressed="true"],
+#midiButtons button[aria-pressed="true"] {
+    background: #344F3B;
+    border-color: #D6B45A;
+    color: #FFD76A;
+    font-weight: bold;
 }
 
 /* 재생 관련 버튼 */
@@ -221,6 +205,7 @@ button[aria-pressed="true"] {
 
 <script>
 const player = document.getElementById("youtubePlayer");
+const videoBox = document.querySelector(".video-box");
 const nowPlaying = document.getElementById("nowPlaying");
 const youtubeLink = document.getElementById("youtubeLink");
 const loopButton = document.getElementById("loopButton");
@@ -240,6 +225,17 @@ function makeEmbedUrl(videoId) {
   return "https://www.youtube.com/embed/" + encodeURIComponent(videoId) + "?" + params.toString();
 }
 
+function applyPartZoom(label) {
+  videoBox.classList.remove("top-zoom", "bottom-zoom");
+
+  if (label.includes("소프라노") || label.includes("알토")) {
+    videoBox.classList.add("top-zoom");
+  } else if (label.includes("테너") || label.includes("베이스")) {
+    videoBox.classList.add("bottom-zoom");
+  }
+  // 합창은 확대하지 않고 기존 화면을 유지합니다.
+}
+
 function playVideo(videoId, label, clickedButton) {
   if (!videoId) {
     alert("아직 이 파트의 영상 주소가 입력되지 않았습니다. HTML의 data-video에 유튜브 영상 ID를 넣어주세요.");
@@ -247,6 +243,7 @@ function playVideo(videoId, label, clickedButton) {
   }
 
   currentVideoId = videoId;
+  applyPartZoom(label);
   player.src = makeEmbedUrl(videoId);
   youtubeLink.href = "https://www.youtube.com/watch?v=" + encodeURIComponent(videoId);
   nowPlaying.textContent = "현재 선택: " + label;
