@@ -226,14 +226,24 @@ function makeEmbedUrl(videoId) {
 }
 
 function applyPartZoom(label) {
+function applyPartZoom(label) {
+  // 먼저 기존 확대 설정을 초기화
   videoBox.classList.remove("top-zoom", "bottom-zoom");
 
+  // 합창 영상은 확대하지 않고 원래 크기 유지
+  if (label.includes("합창")) {
+    return;
+  }
+
+  // 소프라노와 알토는 위쪽 확대
   if (label.includes("소프라노") || label.includes("알토")) {
     videoBox.classList.add("top-zoom");
-  } else if (label.includes("테너") || label.includes("베이스")) {
+  }
+
+  // 테너와 베이스는 아래쪽 확대
+  else if (label.includes("테너") || label.includes("베이스")) {
     videoBox.classList.add("bottom-zoom");
   }
-  // 합창은 확대하지 않고 기존 화면을 유지합니다.
 }
 
 function playVideo(videoId, label, clickedButton) {
