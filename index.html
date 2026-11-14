@@ -156,6 +156,19 @@ button:hover, .action:hover {
         flex: 1 1 42%;
     }
 }
+    /* 반복재생 켜짐 버튼 */
+#loopButton[aria-pressed="true"] {
+    background: #006400;
+    border-color: #004d00;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+/* 반복재생 꺼짐 버튼 */
+#loopButton[aria-pressed="false"] {
+    background: #DCE8DC;
+    color: #34483B;
+}
 </style>
 </head>
 <body>
